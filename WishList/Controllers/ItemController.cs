@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Linq;
+using Microsoft.AspNetCore.Mvc;
 using WishList.Data;
 using WishList.Models;
 
@@ -36,7 +37,7 @@ namespace WishList.Controllers
         [HttpDelete]
         public IActionResult Delete(int Id)
         {
-            var item = _context.Items.Find(Id);
+            var item = _context.Items.FirstOrDefault(i => i.Id == Id);
             _context.Items.Remove(item);
             _context.SaveChanges();
 
